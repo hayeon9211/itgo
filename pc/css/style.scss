@@ -1,0 +1,834 @@
+@charset "utf-8";
+
+
+/* 초기 스타일 정의 */
+body, ul, ol, h1, h2, h3, h4, h5, h6, p, dl, dt, dd {
+	margin: 0;
+	padding: 0;
+}
+ul, ol, dl {
+	list-style: none;
+}
+img {
+	vertical-align: top;
+}
+a {
+	text-decoration: none;
+	color: #333;
+}
+
+
+$main_color: #0054a6;
+$sub_color1: #0e77af;
+$sub_color2: #e5e5dd;
+$sub_color3: #e8e8e8;
+$sub_color4: #cbcfd5;
+$sub_color5: #ebebeb;
+
+@mixin animation($prop, $duration) {
+	-webkit-transition: $prop $duration;
+	trasition: $prop $duration;
+}
+@mixin bgImage($url, $repeat, $position, $sizing){
+	background-image: url($url);
+	background-repeat: $repeat;
+	background-position: $position;
+	background-sizing: $sizing; /*cover, auto*/
+}
+
+
+/* header_upper/utils */
+#header {
+	.upper {
+		min-width: 1100px;
+		background-color: $sub_color4;
+	}
+	.upper_inner {
+		margin: 0 auto;
+		position: relative;
+		z-index: 15;
+		width: 1100px;
+		height: 40px;
+
+		
+		.logo {
+			position: absolute;
+			left: 0;
+			top: 20px;
+			width: 108px;
+			height: 108px;
+		}
+		.utils {
+			float: right;
+			width: 235px;
+			line-height: 22px;
+			vertical-align: middle;
+
+			li {
+				display: inline-block;
+				float: left;
+				margin-right: 12px;
+				margin-top: 5px;
+
+				
+				a {
+					font-weight: 700;
+					font-size: 12px;
+					color: $sub_color1;
+				}
+			}
+			.page {
+				display: inline-block;
+				float: right;
+				width: 65px;
+				margin-top: 6px;
+				text-align: center;
+
+				a {
+					display: block;
+					font-weight: 700;
+					font-size: 12px;
+					color: $main_color;
+				}
+			}				
+		}			
+	}
+
+	/*header_menu*/
+	.menu {
+		position: absolute;
+		top: 40px;
+		width: 100%;
+		height: 66px;
+		min-width: 1100px;
+		overflow: hidden;
+		background-color: #fff;
+		@include animation(height, 0.3s);
+		z-index: 14;
+
+		
+		&:hover {
+			height: 400px;
+
+			&::after {
+				display: block;
+			}
+		}
+		&::after {
+			content: "";
+			display: none;
+			position: absolute;
+			left: 0;
+			top: 66px;
+			width: 100%;
+			height: 1px;
+			background-color: $sub_color5;
+		}
+			
+
+		.menu_inner {
+			position: relative;
+			width: 1100px;
+			margin: 0 auto;
+			text-align: center;
+
+			
+
+			#GNB {
+				width: 100%;
+				text-align: center;
+				font-size: 15px;
+
+				
+				> ul > li {
+					display: inline-block;
+					position: relative;
+					
+					> a {
+						position: relative;
+						display: block;
+						padding: 0 10px;
+						margin: 0 40px;
+						line-height: 66px;
+						text-decoration: none;
+						color: $sub_color1;
+						font-weight: 700;
+
+						&::after {
+							content: "";
+							display: none;
+							position: absolute;
+							left: 0;
+							bottom: 0;
+							width: 100%;
+							height: 2px;
+							background-color: $sub_color1;
+						}
+					}
+					&:hover > a::after {
+						display: block;
+					}
+				}
+						
+				#GNB ul ul {
+					position: absolute;
+					width: 100%;
+				}
+					a {
+						display: block;
+						margin-top: 12px;
+						line-height: 15px;
+						text-decoration: none;
+						font-size: 14px;
+						color: #818181;
+
+						&:hover {
+							text-decoration: none;
+							color: $main_color;
+						}
+			
+					}
+
+						
+
+			}
+			.menu_evnet {
+				position: absolute;
+				right: 0;
+				top: 16px;
+				height: 66px;
+
+				img {
+					height: 40px;
+					box-sizing: border-box;
+				}
+			}				
+		}
+	}
+
+	/*Keyvisual*/
+	.keyvisual { 
+		height: auto;
+		margin-top: 66px;
+	    
+		.owl-carousel {
+			position: relative;
+			min-width: 1100px;
+
+			.owl-item {
+				position: relative;
+				height: 526px;
+				overflow: hidden;
+
+			    
+				img {
+				    position: absolute;
+				    left: 50%;
+				    top: 0;
+				    margin-left: -1000px;
+				    width: 2000px;
+				    height: 526px;
+					z-index: 13;
+				}
+			}
+			.owl-nav {
+				display: none;
+			}
+			.owl-dots {
+				position: absolute;
+				width: 100%;
+				bottom: 100px;
+				opacity: 0.8;
+				
+				button {  
+					background-color: transparent;
+					padding: 1px 2px;
+					border-width: 0px;
+					border-color: transparent;
+				}
+
+				.owl-dot {
+					span{
+					    background: $sub_color4;
+					}
+					&.active span{
+					    background: $main_color;
+					}
+				}
+			}				
+		}			
+	}
+}
+
+/*contents*/
+#contents {
+	min-width: 1100px;
+	position: relative;
+	height: 374px;
+	background-color: #fff;
+
+	
+	.banner_inner {
+		position: absolute;
+		width: 1102px;
+		height: 370px;
+		left: 50%;
+		top: -70px;
+		z-index: 10;
+		margin: 0 auto;
+		margin-left: -550px;
+
+		
+
+		/*banner1*/
+		.banner1 {
+			float: left;
+			width: 274px;
+			height: 184px;
+			background-color: $sub_color2;
+
+				
+			.banner1_title {
+				padding-top: 25px;
+				padding-left: 20px;
+
+				li {
+					float: left;
+
+					a {
+						letter-spacing: -1px;
+						font-size: 16px;
+						color: #000;
+						padding: 0 5px;
+					}
+					&.active a {
+						font-size: 18px;
+						font-weight: 700;
+						color: $main_color;
+					}
+				}
+				&:first-child {
+					position: relative;
+					margin-right: 10px;
+					padding-right: 11px;
+
+					&::after {
+						content: "";
+						display: block;
+						position: absolute;
+						top: 4px;
+						right: -1px;
+						width: 1px;
+						height: 14px;
+						background-color: #ccc;
+					}
+				}					
+					
+			}
+			
+			.banner1_text {
+				div {
+					display: none;
+					margin-top: 10px;
+					padding: 5px 15px 0;
+
+					&active {
+						display: inline-block;
+					}
+
+					li {
+						margin-top: 11px;
+
+						&:first-child {
+							margin-top: 0;
+						}
+						a {
+							display: block;
+							height: 16px;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							font-size: 14px;
+							color: #000;
+						}
+					}
+				}
+			}				
+		}
+
+
+		/*Banner:smart_phone*/
+		.smart_phone {
+			position: relative;
+			float: left;
+			width: 184px;
+			height: 184px;
+
+			
+			.dim {
+				position: absolute;
+				opacity: 0;
+				@include animation(opacity, 0.3s);
+			}
+			a:hover .dim,
+			a:focus .dim {
+				opacity: 1;
+			}
+		}
+
+		/*Banner3:best_sub*/
+		.best_sub {
+			position: relative;
+			float: left;
+			width: 184px;
+			height: 184px;
+			
+			.dim {
+				position: absolute;
+				opacity: 0;
+				@include animation(opacity, 0.3s);
+			}
+			a:hover .dim,
+			a:focus .dim {
+				opacity: 1;
+			}
+		}
+
+
+		/*Banner4:choice*/
+		.choice {
+			position: relative;
+			float: left;
+			width: 184px;
+			height: 184px;
+
+			
+			.dim {
+				position: absolute;
+				opacity: 0;
+				@include animation(opacity, 0.3s);
+			}
+			a:hover .dim,
+			a:focus .dim {
+				opacity: 1;
+			}
+		}
+
+		/*Banner5:search*/
+		.search {
+			float: left;
+			width: 275px;
+			height: 184px;
+			background-color: $sub_color2;
+
+			
+			.search_title {
+				.title_text {
+					margin-top: 20px;
+					margin-left: 10px;
+					font-size: 20px;
+					font-weight: 700;
+					letter-spacing: -1px;
+					color: $main_color;
+				}
+				a {
+					position: absolute;
+					right: 20px;
+					top: 20px;
+					font-size: 13px;
+					color: #888;
+				}
+			}
+				
+			.btn_subject {
+				margin-top: 20px;
+				margin-left: 15px;
+				width: 240px;
+
+				li {
+					position: relative;
+					list-style: none;
+
+					
+					dt a {
+						&.subject {
+							display: block;
+							padding-left: 15px;
+							line-height: 35px;
+							letter-spacing: -0.5px;
+							font-size: 16px;
+							font-weight: 300;
+							@include bgImage(#fff, url("../images/sel_arrow1.png"), 96%, 15px, no-repeat);
+							color: #666;
+						}
+						&.subject.active {
+							@include bgImage(url("../images/sel_arrow2.png"));
+						}
+						&.class {
+							display: block;
+							padding-left: 15px;
+							margin-top: 20px;
+							width: 224px;
+							line-height: 35px;
+							letter-spacing: -0.5px;
+							font-size: 16px;
+							font-weight: 300;
+							@include bgImage($main_color, url("../images/sel_arrow2.png"), 96%, 15px, no-repeat);
+							color: #fff;
+						}
+						&.class.active {
+							@include bgImage(url("../images/sel_arrow2.png"));
+						}
+					}
+					dd {
+						display: none;
+						position: absolute;
+						left: 0;
+						top: 35px;
+						z-index: 10;
+						width: 100%;
+
+						li a {
+							display: block;
+							left: 10px;
+							top: 10px;
+							width: 220px;
+							padding-left: 20px;
+							line-height: 36px;
+							font-size: 14px;
+							background-color: #f4f4f4;
+							color: #666;
+							border-top: 1px solid #eaeaea;
+							@include animation(background-color, 0.3s);
+						}
+					}						
+				}
+			}
+				
+		}
+
+
+		/*Banner6 : test*/
+		.test {
+			float: left;
+			width: 272px;
+			height: 183px;
+			border-left: 1px solid $sub_color3;
+			border-bottom: 1px solid $sub_color3;
+			@include bgImage(url("../images/test_bg.jpg"));
+
+			
+			.test_desc {
+				padding-top: 30px;
+				padding-left: 22px;
+			}
+			.test_desc dt {
+				font-size: 19px;
+				font-weight: 700;
+				color: $main_color;
+			}
+			.test_desc dd:last-child {
+				margin-top: 13px;
+				line-height: 16px;
+				font-size: 13px;
+				color: #000;
+			}
+			.test_btn ul {
+				padding-top: 20px;
+				padding-left: 22px;
+				
+
+				li {
+					display: inline-block;
+					margin-left: 10px;
+
+					&:first-child {
+						margin-left: 0;
+					}
+
+					
+					.test_book {
+						display: block;
+						text-align: center;
+						width: 115%;
+						height: 24px;
+						padding-top: 4px;
+						font-size: 13px;
+						color: #fff;
+						box-sizing: border-box;
+						background-color: $sub_color1;
+					}
+					.test_data {
+						display: block;
+						text-align: center;
+						width: 115%;
+						height: 24px;
+						padding-top: 4px;
+						font-size: 13px;
+						color: #fff;
+						box-sizing: border-box;
+						background-color: $main_color;
+					}
+				}
+			}
+		}
+
+		/*Banner7 : event*/
+		.event {
+			display: block;
+			float: left;
+			width: 184px;
+			height: 183px;
+			border-left: 1px solid $sub_color3;
+			border-bottom: 1px solid $sub_color3;
+			
+			.title {
+				padding-top: 30px;
+				padding-left: 10px;
+				line-height: 1.2;
+				letter-spacing: -0.5px;
+				font-size: 20px;
+				font-weight: 700;
+				color: $main_color;
+			}
+			.content {
+				padding-top: 8px;
+				padding-left: 10px;
+				line-height: 1.4;
+				letter-spacing: -0.5px;
+				font-size: 14px;
+				color: #000;
+			}
+			.event_pager {
+				margin-top: 40px;
+				width: 100%;
+				font-size: 0;
+				text-align: center;
+			}
+			li {
+				display: inline-block;
+				margin: 0 3px;
+				
+				a {
+					display: block;
+					width: 7px;
+					height: 7px;
+					background-color: $sub_color4;
+					border-radius: 50%;
+				}
+				&.active a {
+					background-color: $sub_color1;
+				}
+			}
+		}
+		.event_wrap {
+			position: relative;
+			display: inline-block;
+			width: 368px;
+			height: 184px;
+			overflow: hidden;
+
+			.event_moving {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 736px; /* 368px*2 */
+				height: 184px;
+
+				li {
+					float: left;
+					width: 368px;
+					height: 184px;
+						img {
+						display: inline-block;
+					}
+				}
+			}		
+		}
+			
+
+		/*Banner8 : call*/
+		.call {
+			float: right;
+			width: 272px;
+			height: 183px;
+			border-right: 1px solid $sub_color3;
+			border-bottom: 1px solid $sub_color3;
+			@include bgImage(url("../images/call.jpg"));
+
+			
+			a {
+				.title {
+					margin-top: 30px;
+					margin-left: 10px;
+					line-height: 1.2;
+					letter-spacing: -0.8px;
+					font-size: 20px;
+					font-weight: 700;
+					color: $main_color;
+				}
+				.content {
+					margin-left: 10px;
+					padding-top: 8px;
+					line-height: 1.4;
+					letter-spacing: -0.5px;
+					font-size: 14px;
+					color: #000;
+
+					span {
+						line-height: 2;
+						font-weight: 700;
+						color: $main_color;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+
+/*Footer*/
+#footer {
+	min-width: 1100px;
+
+	
+	.footer_banner {
+		width: 100%;
+		height: 66px;
+		border-top: 1px solid #eaeaea;
+		border-bottom: 1px solid #eaeaea;
+
+		
+		.banner_inner {
+			position: relative;
+			width: 1100px;
+			margin: 0 auto;
+			height: 67px;
+			overflow: hidden;
+		}
+		.banner_img {
+			position: relative;
+			margin: 0 auto;
+			margin-top: 20px;
+			width: 1050px;
+			height: 30px;
+			overflow: hidden;
+		}
+		ul {
+			position: absolute;
+			width: 1750px;
+
+			li {
+				float: left;
+				width: 175px;
+				height: 27px;
+				text-align: center;
+				box-sizing: border-box;
+
+				
+				img {
+					vertical-align: middle;
+				}
+			}
+		}
+
+		.footer_btn li {
+			position: absolute;
+			top: 24px;
+			width: 9px;
+			height: 16px;
+
+			
+			&.btn_R {
+				right: 0;
+			}
+			&.btn_L {
+				left: 0;
+			}
+		}
+	}
+
+
+	/*footer_Quick_menu*/
+	.Quick_menu {
+		min-width: 1100px;
+		width: 100%;
+		height: 45px;
+		background-color: #fafafa;
+		border-bottom: 1px solid $sub_color3;
+
+		
+		.Quick_menu_inner {
+			margin: 0 auto;
+			width: 1100px;
+			overflow: hidden;
+
+			
+			.menu_desc {
+				width: 100%;
+				height: 23px;
+				margin-top: 10px;
+				text-align: left;	
+			}
+			li {
+				display: inline-block;
+				position: relative;
+				padding: 0 15px;
+				font-size: 14px;
+				text-align: center;
+
+				
+				a:after {
+					content: "";
+					display: block;
+				    position: absolute;
+					right: 0;
+					left: 0;
+				    top: 5px;
+					width: 1px;
+					height: 12px;
+					background-color: #ccc;
+				}
+				&:first-child {
+					padding-left: 0;
+
+					a:after {
+						display: none;
+					}
+				}				
+			}
+		}
+	}
+
+	/*footer_desc*/
+	.footer_desc {
+		height: 180px;
+		font-size: 12px;
+		background-color: #fafafa;
+
+		.desc_inner {
+			margin: 0 auto;
+			padding-top: 30px;
+			width: 1100px;
+		}
+		.footer_logo {
+			float: left;
+			padding-top: 25px;
+		}
+		.footer_text {
+			float: left;
+			padding-left: 30px;
+			line-height: 23px;
+			color: #828483;
+
+			
+			span {
+				font-weight: 700;
+			}
+		}
+	}
+		
+}
+
+
